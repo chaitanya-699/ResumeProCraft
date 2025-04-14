@@ -1,4 +1,5 @@
 import { useResume } from "@/lib/resumeContext";
+import { formatDescription } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,6 +17,10 @@ export default function ProjectsForm() {
   const { projects = [] } = resumeData;
   
   const handleChange = (id: string, field: string, value: string) => {
+    // If this is a description field, format it with bullet points
+    if (field === "description") {
+      value = formatDescription(value);
+    }
     updateProject(id, { [field]: value });
   };
   
@@ -78,6 +83,9 @@ export default function ProjectsForm() {
                   value={project.description}
                   onChange={(e) => handleChange(project.id, "description", e.target.value)}
                 />
+                <p className="mt-1 text-sm text-gray-500">
+                  Use bullet points for better readability. Simply type "•" (copy this symbol) at the start of each line.
+                </p>
               </div>
             </div>
           </div>

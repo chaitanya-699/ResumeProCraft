@@ -1,4 +1,5 @@
 import { useResume } from "@/lib/resumeContext";
+import { formatDescription } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,6 +18,10 @@ export default function ExperienceForm() {
   const { experience } = resumeData;
   
   const handleChange = (id: string, field: string, value: string | boolean) => {
+    // If this is a description field, format it with bullet points
+    if (field === "description" && typeof value === "string") {
+      value = formatDescription(value);
+    }
     updateExperience(id, { [field]: value });
   };
   
@@ -131,7 +136,7 @@ export default function ExperienceForm() {
                   onChange={(e) => handleChange(job.id, "description", e.target.value)}
                 />
                 <p className="mt-1 text-sm text-gray-500">
-                  Use bullet points (•) for better readability
+                  Use bullet points for better readability. Simply type "•" (copy this symbol) at the start of each line.
                 </p>
               </div>
             </div>

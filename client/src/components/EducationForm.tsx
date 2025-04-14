@@ -1,4 +1,5 @@
 import { useResume } from "@/lib/resumeContext";
+import { formatDescription } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,6 +18,10 @@ export default function EducationForm() {
   const { education } = resumeData;
   
   const handleChange = (id: string, field: string, value: string | boolean) => {
+    // If this is a description field, format it with bullet points
+    if (field === "description" && typeof value === "string") {
+      value = formatDescription(value);
+    }
     updateEducation(id, { [field]: value });
   };
   
