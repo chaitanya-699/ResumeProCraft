@@ -31,6 +31,10 @@ import ProjectsForm from "@/components/ProjectsForm";
 import ResumePreview from "@/components/ResumePreview";
 import { generatePdf } from "@/lib/pdfGenerator";
 import { useToast } from "@/hooks/use-toast";
+import AiSuggestions from "@/components/AiSuggestions";
+import JobMatchAnalyzer from "@/components/JobMatchAnalyzer";
+import TeamCollaboration from "@/components/TeamCollaboration";
+import { Switch } from "@/components/ui/switch";
 
 export default function Builder() {
   const { 
@@ -43,6 +47,7 @@ export default function Builder() {
   const [resumeTitle, setResumeTitle] = useState("My Resume");
   const [isSaving, setIsSaving] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [enterpriseMode, setEnterpriseMode] = useState(false);
   const resumePreviewRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
   
@@ -97,6 +102,17 @@ export default function Builder() {
     resetResume();
   };
   
+  // Toggle enterprise mode
+  const toggleEnterpriseMode = () => {
+    setEnterpriseMode(prev => !prev);
+    toast({
+      title: enterpriseMode ? "Standard mode activated" : "Enterprise mode activated",
+      description: enterpriseMode 
+        ? "Switched to standard features" 
+        : "Unlocked premium features and team collaboration",
+    });
+  };
+  
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
@@ -111,7 +127,18 @@ export default function Builder() {
             </Link>
             <h1 className="text-2xl font-bold text-primary">Professional Resume Builder</h1>
           </div>
-          <div className="flex space-x-3">
+          <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2 mr-4">
+              <Switch 
+                id="enterprise-mode" 
+                checked={enterpriseMode} 
+                onCheckedChange={toggleEnterpriseMode}
+              />
+              <Label htmlFor="enterprise-mode" className="text-sm font-medium">
+                Enterprise Mode
+              </Label>
+            </div>
+          
             <AlertDialog open={saveDialogOpen} onOpenChange={setSaveDialogOpen}>
               <AlertDialogTrigger asChild>
                 <Button variant="outline" disabled={isSaving || isLoading}>
@@ -202,6 +229,14 @@ export default function Builder() {
               </div>
             </div>
           </div>
+          
+          <AiSuggestions />
+          {enterpriseMode && (
+            <>
+              <JobMatchAnalyzer />
+              <TeamCollaboration />
+            </>
+          )}
         </div>
       </main>
     </div>

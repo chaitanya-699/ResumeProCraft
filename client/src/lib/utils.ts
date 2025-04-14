@@ -71,3 +71,17 @@ export function formatDateRange(startDate: string, endDate: string, current: boo
   
   return '';
 }
+
+/**
+ * Formats a single date for display in resume templates
+ */
+export function formatDate(dateString: string): string {
+  if (!dateString) return '';
+  
+  try {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+  } catch (error) {
+    return dateString; // Fallback to original string if parsing fails
+  }
+}

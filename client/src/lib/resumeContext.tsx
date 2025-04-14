@@ -70,7 +70,7 @@ type ResumeContextType = {
   updatePersonalInfo: (info: Partial<PersonalInfo>) => void;
   updateSummary: (summary: string) => void;
   updateSkills: (skills: string) => void;
-  updateTemplate: (template: 'classic' | 'modern' | 'minimal') => void;
+  updateTemplate: (template: 'classic' | 'modern' | 'minimal' | 'premium' | 'executive') => void;
   
   // Experience operations
   addExperience: () => void;
@@ -141,7 +141,7 @@ export const ResumeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   };
 
   // Template update
-  const updateTemplate = (template: 'classic' | 'modern' | 'minimal') => {
+  const updateTemplate = (template: 'classic' | 'modern' | 'minimal' | 'premium' | 'executive') => {
     setResumeData(prev => ({ ...prev, template }));
   };
 

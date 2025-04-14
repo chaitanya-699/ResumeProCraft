@@ -1,10 +1,13 @@
-import { useResume } from "@/lib/resumeContext";
 import { formatDateRange } from "@/lib/utils";
+import { type ResumeData } from '@shared/schema';
 import { Mail, Phone, MapPin, Linkedin, Globe } from "lucide-react";
 
-export default function ModernTemplate() {
-  const { resumeData } = useResume();
-  const { personalInfo, summary, experience, education, skills, projects = [] } = resumeData;
+interface ModernTemplateProps {
+  data: ResumeData;
+}
+
+export default function ModernTemplate({ data }: ModernTemplateProps) {
+  const { personalInfo, summary, experience, education, skills, projects = [] } = data;
   
   // Format skills as an array
   const skillsArray = skills?.split(',').map(skill => skill.trim()).filter(Boolean) || [];

@@ -78,7 +78,7 @@ export const resumeDataSchema = z.object({
   education: z.array(educationSchema),
   skills: z.string().optional(),
   projects: z.array(projectSchema).optional(),
-  template: z.enum(["classic", "modern", "minimal"]),
+  template: z.enum(["classic", "modern", "minimal", "premium", "executive"]),
 });
 
 export type User = typeof users.$inferSelect;

@@ -7,7 +7,10 @@ import {
   CheckCircle, 
   Edit3, 
   Layout, 
-  Award
+  Award,
+  Target,
+  Users,
+  ArrowRight
 } from "lucide-react";
 
 export default function Home() {
@@ -161,6 +164,59 @@ export default function Home() {
                 "The customization options are amazing! I was able to tailor my resume perfectly for my industry, and the layout was beautifully balanced."
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Enterprise Features */}
+      <section className="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Enterprise & Premium Features</h2>
+            <p className="text-xl opacity-90 max-w-3xl mx-auto">
+              Take your resume to the next level with our advanced professional tools
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white/10 p-6 rounded-lg backdrop-blur-sm">
+              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center text-white mb-4 mx-auto">
+                <Award className="h-8 w-8" />
+              </div>
+              <h3 className="text-xl font-semibold text-center mb-2">Premium Templates</h3>
+              <p className="text-center opacity-90">
+                Access exclusive, professionally designed templates that make your resume stand out from the competition.
+              </p>
+            </div>
+            
+            <div className="bg-white/10 p-6 rounded-lg backdrop-blur-sm">
+              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center text-white mb-4 mx-auto">
+                <Target className="h-8 w-8" />
+              </div>
+              <h3 className="text-xl font-semibold text-center mb-2">Job Match Analysis</h3>
+              <p className="text-center opacity-90">
+                Analyze how well your resume matches specific job descriptions and get tailored recommendations to improve.
+              </p>
+            </div>
+            
+            <div className="bg-white/10 p-6 rounded-lg backdrop-blur-sm">
+              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center text-white mb-4 mx-auto">
+                <Users className="h-8 w-8" />
+              </div>
+              <h3 className="text-xl font-semibold text-center mb-2">Team Collaboration</h3>
+              <p className="text-center opacity-90">
+                Collaborate with team members, career coaches, and HR professionals to perfect your resume.
+              </p>
+            </div>
+          </div>
+          
+          <div className="mt-12 text-center">
+            <Link href="/builder">
+              <Button size="lg" variant="secondary" className="text-primary font-semibold">
+                Try Enterprise Features
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
