@@ -33,10 +33,10 @@ export const insertResumeSchema = createInsertSchema(resumes).omit({
 
 // Resume data schema for validation
 export const personalInfoSchema = z.object({
-  fullName: z.string().min(1, "Full name is required"),
-  jobTitle: z.string().min(1, "Job title is required"),
-  email: z.string().email("Invalid email format"),
-  phone: z.string().min(1, "Phone number is required"),
+  fullName: z.string().optional().or(z.string().min(1, "Full name is required")),
+  jobTitle: z.string().optional().or(z.string().min(1, "Job title is required")),
+  email: z.string().optional().or(z.string().email("Invalid email format")),
+  phone: z.string().optional().or(z.string().min(1, "Phone number is required")),
   address: z.string().optional(),
   linkedin: z.string().optional(),
   website: z.string().optional(),
@@ -44,10 +44,10 @@ export const personalInfoSchema = z.object({
 
 export const experienceSchema = z.object({
   id: z.string(),
-  company: z.string().min(1, "Company name is required"),
-  title: z.string().min(1, "Job title is required"),
+  company: z.string().optional().or(z.string().min(1, "Company name is required")),
+  title: z.string().optional().or(z.string().min(1, "Job title is required")),
   location: z.string().optional(),
-  startDate: z.string().min(1, "Start date is required"),
+  startDate: z.string().optional().or(z.string().min(1, "Start date is required")),
   endDate: z.string().optional(),
   current: z.boolean().optional(),
   description: z.string().optional(),
@@ -55,10 +55,10 @@ export const experienceSchema = z.object({
 
 export const educationSchema = z.object({
   id: z.string(),
-  institution: z.string().min(1, "Institution name is required"),
-  degree: z.string().min(1, "Degree is required"),
+  institution: z.string().optional().or(z.string().min(1, "Institution name is required")),
+  degree: z.string().optional().or(z.string().min(1, "Degree is required")),
   location: z.string().optional(),
-  startDate: z.string().min(1, "Start date is required"),
+  startDate: z.string().optional().or(z.string().min(1, "Start date is required")),
   endDate: z.string().optional(),
   current: z.boolean().optional(),
   description: z.string().optional(),
@@ -66,7 +66,7 @@ export const educationSchema = z.object({
 
 export const projectSchema = z.object({
   id: z.string(),
-  name: z.string().min(1, "Project name is required"),
+  name: z.string().optional().or(z.string().min(1, "Project name is required")),
   url: z.string().optional(),
   description: z.string().optional(),
 });
